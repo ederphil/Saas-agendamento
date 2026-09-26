@@ -1,7 +1,9 @@
 # Plataforma de agendamento: kernel compartilhado e produtos por nicho
 
-**Status:** definição inicial para orientar produto e implementação  
-**Versão:** 0.1 — 25/09/2026  
+**Status:** definição de produto com primeiro incremento funcional implementado
+
+**Versão:** 0.2 — 25/09/2026
+
 **Responsável pelo produto:** Eder
 
 ## 1. Visão e objetivo
@@ -14,32 +16,32 @@ O estabelecimento contrata diretamente o produto do seu segmento; **não escolhe
 
 ## 2. Decisões de produto
 
-| Decisão | Definição |
-| --- | --- |
-| Modelo comercial | Vários produtos/sites voltados a nichos, operados pela mesma plataforma. |
-| Reuso | Uma base de código e um kernel compartilhado; diferenças explícitas por produto e módulos específicos quando necessárias. |
-| Primeiro lançamento | Pet Shop / Banho e Tosa, sem prontuário veterinário. |
-| Contratação | Autocadastro, teste ou plano e ativação automática, conforme política comercial a definir. |
-| Experiência | Nome, textos, exemplos, formulários e apresentação comercial próprios de cada oferta. |
-| Configuração de nicho | Definida pela operação da plataforma a partir do produto de origem, nunca escolhida pelo cliente no cadastro. |
-| Expansão | Abrir novos produtos após medir ativação, conversão, retenção e custo de atendimento do primeiro. |
+| Decisão               | Definição                                                                                                                 |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Modelo comercial      | Vários produtos/sites voltados a nichos, operados pela mesma plataforma.                                                  |
+| Reuso                 | Uma base de código e um kernel compartilhado; diferenças explícitas por produto e módulos específicos quando necessárias. |
+| Primeiro lançamento   | Pet Shop / Banho e Tosa, sem prontuário veterinário.                                                                      |
+| Contratação           | Autocadastro, teste ou plano e ativação automática, conforme política comercial a definir.                                |
+| Experiência           | Nome, textos, exemplos, formulários e apresentação comercial próprios de cada oferta.                                     |
+| Configuração de nicho | Definida pela operação da plataforma a partir do produto de origem, nunca escolhida pelo cliente no cadastro.             |
+| Expansão              | Abrir novos produtos após medir ativação, conversão, retenção e custo de atendimento do primeiro.                         |
 
 Os nomes **PetFlow, BarberFlow e BeautyFlow** são apenas exemplos de trabalho; não representam marcas ou domínios registrados. Preços, prazo do teste e provedores externos também dependem de validação.
 
 ## 3. Conceitos e limites
 
-| Conceito | Significado | Exemplo |
-| --- | --- | --- |
-| Plataforma | Operação técnica e administrativa de todos os produtos. | Painel do operador. |
-| Produto / marca | Oferta comercial com site, identidade, textos, plano e origem do cadastro. | Produto para banho e tosa. |
-| Vertical | Regras e dados próprios de um segmento. | Pet; Beleza; Barbearia. |
-| Tenant | Estabelecimento contratante, com dados e assinatura próprios. | Pet Shop do João. |
-| Unidade | Local de atendimento de um tenant. | Loja Centro. Na V1, apenas uma unidade por estabelecimento. |
-| Usuário | Pessoa que acessa o painel do estabelecimento. | Proprietário ou atendente. |
-| Cliente | Pessoa atendida pelo estabelecimento. | Tutora de um pet. |
-| Recurso | Pessoa ou capacidade reservável para realizar o serviço. | Banhista, barbeiro ou profissional. |
-| Serviço | Oferta com duração e preço configurados pelo estabelecimento. | Banho de porte médio. |
-| Agendamento | Reserva de cliente, serviço, intervalo e recurso. | Banho de Thor, terça às 14h. |
+| Conceito        | Significado                                                                | Exemplo                                                     |
+| --------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| Plataforma      | Operação técnica e administrativa de todos os produtos.                    | Painel do operador.                                         |
+| Produto / marca | Oferta comercial com site, identidade, textos, plano e origem do cadastro. | Produto para banho e tosa.                                  |
+| Vertical        | Regras e dados próprios de um segmento.                                    | Pet; Beleza; Barbearia.                                     |
+| Tenant          | Estabelecimento contratante, com dados e assinatura próprios.              | Pet Shop do João.                                           |
+| Unidade         | Local de atendimento de um tenant.                                         | Loja Centro. Na V1, apenas uma unidade por estabelecimento. |
+| Usuário         | Pessoa que acessa o painel do estabelecimento.                             | Proprietário ou atendente.                                  |
+| Cliente         | Pessoa atendida pelo estabelecimento.                                      | Tutora de um pet.                                           |
+| Recurso         | Pessoa ou capacidade reservável para realizar o serviço.                   | Banhista, barbeiro ou profissional.                         |
+| Serviço         | Oferta com duração e preço configurados pelo estabelecimento.              | Banho de porte médio.                                       |
+| Agendamento     | Reserva de cliente, serviço, intervalo e recurso.                          | Banho de Thor, terça às 14h.                                |
 
 **Produto, vertical e tenant são relações diferentes.** O produto de origem fixa o vertical do tenant durante o cadastro. O mesmo vertical pode, no futuro, sustentar mais de uma marca, sem duplicar a lógica de agenda. Mudanças de vertical para um tenant exigiriam migração explícita e ficam fora da V1.
 
@@ -104,12 +106,12 @@ Os **sites de venda** podem ter domínios e campanhas diferentes. O **painel ope
 
 Podem compartilhar o agendamento, os cadastros e a assinatura. Alteram identidade, textos, serviços iniciais e eventuais regras comprovadamente necessárias. A expansão depende de entrevistas e validação de aquisição; **não pressupõe** que bastará trocar o logo.
 
-| Elemento | Pet Shop | Salão | Barbearia |
-| --- | --- | --- | --- |
-| Pessoa atendida | Tutor / cliente | Cliente | Cliente |
-| Objeto adicional | Pet | Nenhum previsto | Nenhum previsto |
-| Recurso principal | Banhista / tosador | Profissional | Barbeiro |
-| Serviço exemplo | Banho e tosa | Corte / escova | Corte / barba |
+| Elemento          | Pet Shop           | Salão           | Barbearia       |
+| ----------------- | ------------------ | --------------- | --------------- |
+| Pessoa atendida   | Tutor / cliente    | Cliente         | Cliente         |
+| Objeto adicional  | Pet                | Nenhum previsto | Nenhum previsto |
+| Recurso principal | Banhista / tosador | Profissional    | Barbeiro        |
+| Serviço exemplo   | Banho e tosa       | Corte / escova  | Corte / barba   |
 
 Clínicas médicas ou veterinárias, oficinas e outros nichos com prontuário, fiscalidade ou alocação complexa **não entram automaticamente** no mesmo produto. São oportunidades a estudar separadamente.
 
@@ -117,13 +119,13 @@ Clínicas médicas ou veterinárias, oficinas e outros nichos com prontuário, f
 
 Os nomes abaixo são conceituais, não uma migração SQL definitiva.
 
-| Área | Entidades candidatas | Responsabilidade |
-| --- | --- | --- |
-| Catálogo de produtos | `brand`, `vertical`, `brand_vertical` | Origem do cadastro, tema e segmento operado. |
-| Conta e acesso | `tenant`, `user`, `membership` | Estabelecimento e vínculo de pessoas autorizadas. |
-| Agenda | `customer`, `resource`, `service`, `availability_rule`, `time_block`, `booking`, `booking_event` | Cadastro, disponibilidade e reservas. |
-| Vertical Pet | `pet`, `pet_booking` | Dados do animal e vínculo ao agendamento. |
-| Comercial | `plan`, `subscription`, `billing_event` | Estado contratual e eventos da cobrança. |
+| Área                 | Entidades candidatas                                                                             | Responsabilidade                                  |
+| -------------------- | ------------------------------------------------------------------------------------------------ | ------------------------------------------------- |
+| Catálogo de produtos | `brand`, `vertical`, `brand_vertical`                                                            | Origem do cadastro, tema e segmento operado.      |
+| Conta e acesso       | `tenant`, `user`, `membership`                                                                   | Estabelecimento e vínculo de pessoas autorizadas. |
+| Agenda               | `customer`, `resource`, `service`, `availability_rule`, `time_block`, `booking`, `booking_event` | Cadastro, disponibilidade e reservas.             |
+| Vertical Pet         | `pet`, `pet_booking`                                                                             | Dados do animal e vínculo ao agendamento.         |
+| Comercial            | `plan`, `subscription`, `billing_event`                                                          | Estado contratual e eventos da cobrança.          |
 
 As entidades de negócio pertencentes a um estabelecimento devem carregar `tenant_id`; vínculos e políticas de acesso devem impedir referências entre tenants. `brand_id` e `vertical_id` são definidos no cadastro pelo backend a partir de uma origem confiável, e não aceitos livremente do formulário. O operador deve poder suspender um tenant; retenção, exclusão e exportação de dados pessoais terão regras definidas antes do lançamento.
 
@@ -150,23 +152,23 @@ As entidades de negócio pertencentes a um estabelecimento devem carregar `tenan
 
 ## 8. Plano de entrega e validação
 
-| Etapa | Entrega verificável | Critério de saída |
-| --- | --- | --- |
-| 0. Descoberta | Conversas com 5–10 operações de banho e tosa; landing page e proposta de preço. | Dores, fluxo e disposição de pagar registrados. |
-| 1. Base | Produto de origem, tenant, login, onboarding, clientes, pets, serviços e recursos. | Uma conta nova consegue configurar o estabelecimento sem intervenção. |
-| 2. Agenda | Disponibilidade, bloqueios, agenda interna e prevenção de conflitos. | Dois pedidos simultâneos não ocupam o mesmo recurso/horário. |
-| 3. Aquisição | Página pública, agendamento e métricas de ativação. | Cliente final consegue reservar; operação consegue atender e concluir. |
-| 4. Cobrança | Planos, teste, pagamento e eventos de assinatura. | Ativação, renovação, inadimplência e cancelamento reproduzíveis. |
-| 5. Segundo nicho | Site e experiência próprios, com diferenças necessárias implementadas. | Novo produto usa o kernel sem duplicar lógica de agendamento. |
+| Etapa            | Entrega verificável                                                                | Critério de saída                                                      |
+| ---------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| 0. Descoberta    | Conversas com 5–10 operações de banho e tosa; landing page e proposta de preço.    | Dores, fluxo e disposição de pagar registrados.                        |
+| 1. Base          | Produto de origem, tenant, login, onboarding, clientes, pets, serviços e recursos. | Uma conta nova consegue configurar o estabelecimento sem intervenção.  |
+| 2. Agenda        | Disponibilidade, bloqueios, agenda interna e prevenção de conflitos.               | Dois pedidos simultâneos não ocupam o mesmo recurso/horário.           |
+| 3. Aquisição     | Página pública, agendamento e métricas de ativação.                                | Cliente final consegue reservar; operação consegue atender e concluir. |
+| 4. Cobrança      | Planos, teste, pagamento e eventos de assinatura.                                  | Ativação, renovação, inadimplência e cancelamento reproduzíveis.       |
+| 5. Segundo nicho | Site e experiência próprios, com diferenças necessárias implementadas.             | Novo produto usa o kernel sem duplicar lógica de agendamento.          |
 
 As etapas são **ordem de trabalho**, não promessa de prazo. Antes de investir em anúncios, definir instrumentação para visitas, cadastros, primeira reserva, início de pagamento, conversão paga, cancelamento e tickets de suporte. Receita mensal é `assinantes ativos × ticket médio`, antes de taxas, impostos, aquisição, hospedagem e suporte; números de assinantes são cenários, não previsão.
 
-## 9. Diretrizes técnicas provisórias
+## 9. Diretrizes técnicas definidas no incremento 0.1
 
 - Aplicação web responsiva, adequada ao celular da operação; aplicativo nativo apenas se houver demanda comprovada.
 - Uma base de código para o painel, com configuração de produto/vertical controlada pelo servidor; sites comerciais podem compartilhar componentes sem perder posicionamento próprio.
 - API e persistência com testes de isolamento por tenant e de concorrência do agendamento.
-- PostgreSQL é candidato natural ao banco; Next.js e um serviço gerenciado de autenticação/hospedagem são opções a avaliar por custo, segurança, operação e familiaridade da equipe. **Nenhum fornecedor ou linguagem está aprovado por este documento.**
+- Stack escolhida: **TypeScript, React/Vite, Node.js/Fastify e PostgreSQL**. O ambiente local usa PGlite quando não há PostgreSQL externo. Autenticação por sessão no backend. Os provedores de hospedagem, cobrança e mensageria continuam em aberto.
 - Segredos e credenciais apenas no servidor; backups, logs de falha e monitoramento mínimo antes da primeira venda.
 - Tratar dados de contato e fotos com finalidade definida, acesso restrito, política de retenção e meios para atender solicitações de titulares.
 
@@ -183,3 +185,22 @@ As etapas são **ordem de trabalho**, não promessa de prazo. Antes de investir 
 ## 11. Critério para alterar o kernel
 
 Uma capacidade entra no kernel quando atende ao modelo comum de pelo menos dois produtos **ou** quando pertence inequivocamente à infraestrutura compartilhada (identidade, isolamento, assinatura, agenda básica). Regras de um nicho ficam no módulo vertical. Mudanças devem preservar contratos claros entre as duas partes e ser justificadas por uso observado; o objetivo é reutilizar o que existe, sem construir um sistema genérico para qualquer negócio.
+
+## 12. Estado real da primeira implementação
+
+O repositório agora contém uma aplicação executável. O primeiro incremento implementa cadastro e login por marca, tenant isolado, cadastros de clientes/serviços/profissionais, pets em módulo separado, disponibilidade semanal, bloqueios, agenda diária/semanal, criação e remarcação, cancelamento e conclusão. Inclui dashboard e trial informativo de 14 dias.
+
+As seções anteriores definem a **visão do produto**, não afirmam que todo o MVP foi concluído. Página pública de reservas, sites comerciais completos, recuperação de senha, equipe e permissões na interface, cobrança, recebimentos, WhatsApp, recorrência e painel do operador ainda são backlog.
+
+| Camada       | Decisão implementada                                                                             |
+| ------------ | ------------------------------------------------------------------------------------------------ |
+| Plataforma   | Monólito modular, uma API e um banco compartilhados.                                             |
+| Vertical     | Registro de regras específicas; Pet tem extensão real de agendamento.                            |
+| Marca        | PetFlow, BarberFlow, BeautyFlow e EsteticaFlow como exemplos configurados no servidor.           |
+| Tenant       | Um estabelecimento, uma marca e um administrador inicial; sem troca de nicho no cadastro.        |
+| Interface    | Shell compartilhado com linguagem e tema por marca; nenhuma seleção de nicho pelo usuário final. |
+| Persistência | PostgreSQL externo ou PGlite local; constraints por tenant e migração versionada.                |
+
+A primeira versão não cria tabelas vazias de pagamento e notificação para sugerir integrações prontas. Esses contratos serão adicionados com seus fluxos e testes quando forem implementados. A expansão comercial permanece controlada pelo proprietário da plataforma.
+
+Consulte [README](README.md) para executar e [decisões técnicas](docs/decisoes-tecnicas.md) para regras, garantias e limites.
