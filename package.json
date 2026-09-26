@@ -1,0 +1,64 @@
+{
+  "name": "agendaflow",
+  "version": "0.1.0",
+  "description": "Kernel SaaS de agendamento com produtos por nicho",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env --import tsx server/dev.ts",
+    "dev:api": "node --env-file-if-exists=.env --import tsx server/index.ts",
+    "build": "tsc --noEmit && vite build",
+    "start": "node --env-file-if-exists=.env --import tsx server/index.ts",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "db:migrate": "node --env-file-if-exists=.env --import tsx server/migrate.ts",
+    "demo": "node --env-file-if-exists=.env --import tsx server/seed.ts",
+    "test:ui": "playwright test",
+    "format": "prettier --write client server tests docs *.json *.ts *.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ederphil/Saas-agendamento.git"
+  },
+  "keywords": [],
+  "author": "",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/ederphil/Saas-agendamento/issues"
+  },
+  "homepage": "https://github.com/ederphil/Saas-agendamento#readme",
+  "dependencies": {
+    "@electric-sql/pglite": "^0.5.8",
+    "@fastify/cookie": "^11.1.2",
+    "@fastify/rate-limit": "^11.2.0",
+    "@fastify/static": "^10.1.4",
+    "@fontsource/dm-sans": "^5.3.0",
+    "@fontsource/manrope": "^5.3.0",
+    "fastify": "^5.12.5",
+    "lucide-react": "^1.48.0",
+    "luxon": "^3.7.2",
+    "pg": "^8.23.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/luxon": "^3.7.5",
+    "@types/node": "^26.6.3",
+    "@types/pg": "^8.23.1",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "prettier": "^3.9.9",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.1"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}
